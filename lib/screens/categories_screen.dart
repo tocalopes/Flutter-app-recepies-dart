@@ -10,6 +10,7 @@ class CategoriesScreens extends StatelessWidget {
         title: Text('vamos Cozinhar?'),
       ),
       body: GridView(
+        padding: const EdgeInsets.all(25),
         children: DUMMY_CATEGORIES.map((category) {
           return CategoryItem(category);
         }).toList(),

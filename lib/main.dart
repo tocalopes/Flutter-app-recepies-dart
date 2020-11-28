@@ -6,31 +6,46 @@ import 'screens/categories_screen.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget{
-
+class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Vamos cozinhar',
       theme: ThemeData(
         primarySwatch: Colors.pink,
         accentColor: Colors.amber,
         fontFamily: 'Raleway',
-        canvasColor: Color.fromRGBO(255,254,229,1), //backgorund color
+        canvasColor: Color.fromRGBO(255, 254, 229, 1), //backgorund color
         textTheme: ThemeData.light().textTheme.copyWith(
-          headline6: TextStyle(
-            fontSize: 20,
-            fontFamily: 'RobotoCondensed',
-          ),
-        ),
+              headline6: TextStyle(
+                fontSize: 20,
+                fontFamily: 'RobotoCondensed',
+              ),
+            ),
       ),
       //initialRoute: ,
       routes: {
-        AppRoutes.HOME : (context) => CategoriesScreens(),
-        AppRoutes.CATEGORIES_MEALS : (context) => CategoriesMealsScreen(),
-        AppRoutes.MEAL_DETAILS : (context) => MealDetailsScreen(),
+        AppRoutes.HOME: (context) => CategoriesScreens(),
+        AppRoutes.CATEGORIES_MEALS: (context) => CategoriesMealsScreen(),
+        AppRoutes.MEAL_DETAILS: (context) => MealDetailsScreen(),
+      },
+      //entra nesse metódo somen se a rota não existe em ROUTES
+      // onGenerateRoute: (settings) {
+      //   if (settings.name == '/alguma-coisa') {
+      //     return null;
+      //   } else if (settings.name == '/outra-coisa') {
+      //     return null;
+      //   } else {
+      //     return MaterialPageRoute(builder: (_) {
+      //       return CategoriesScreen();
+      //     });
+      //   }
+      // },
+      onUnknownRoute: (settings) {
+       return MaterialPageRoute(builder: (_) {
+         return MealDetailsScreen();
+       });
       },
     );
   }
 }
-

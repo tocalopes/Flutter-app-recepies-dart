@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recepies_foods/screens/categories_meals_screen.dart';
 import 'package:recepies_foods/screens/meal_datails_screen.dart';
+import 'package:recepies_foods/screens/settings_screen.dart';
 import 'package:recepies_foods/utils/app-routes.dart';
 import 'screens/categories_screen.dart';
 import 'screens/tabs_screen.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.HOME: (context) => TabsScreen(),
         AppRoutes.CATEGORIES_MEALS: (context) => CategoriesMealsScreen(),
         AppRoutes.MEAL_DETAILS: (context) => MealDetailsScreen(),
+        AppRoutes.SETTINGS: (context) => SettingsScreen(),
       },
       //entra nesse metódo somen se a rota não existe em ROUTES
       // onGenerateRoute: (settings) {

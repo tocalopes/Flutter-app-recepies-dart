@@ -8,7 +8,7 @@ enum Complexity {
 
 enum Cost {
   Cheap,
-  Fear,
+  Fair,
   Expensive,
 }
 class Meal {

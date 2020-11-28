@@ -3,29 +3,47 @@ import 'package:recepies_foods/components/main_drawer.dart';
 import 'package:recepies_foods/models/settings.dart';
 
 class SettingsScreen extends StatefulWidget {
+  
+  final Settings settings;
+
+  final Function(Settings) onSettingsChanged;
+  
+  const SettingsScreen(this.settings,this.onSettingsChanged);
+
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  var settings = Settings();
+  
+  Settings settings;
+
+  @override
+  void initState(){
+    super.initState();
+    settings = widget.settings;
+  }
 
   Widget _createSwitch(
     String title,
     String subtitle,
     bool value,
-    Function onChanged,
+    Function(bool) onChanged,
   ) {
     return SwitchListTile.adaptive(
       title: Text(title),
       subtitle: Text(subtitle),
       value: value,
-      onChanged: onChanged,
+      onChanged: (value) {
+        onChanged(value);
+        widget.onSettingsChanged(settings);
+      }
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    print("_settings_scree() => settings ${settings.toString()}");
     return Scaffold(
       appBar: AppBar(
         title: Text('Configurações'),

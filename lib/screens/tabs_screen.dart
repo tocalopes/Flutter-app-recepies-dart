@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recepies_foods/components/main_drawer.dart';
 import 'categories_screen.dart';
 import 'favotire_screen.dart';
 
@@ -32,12 +33,12 @@ class _TabsScreenState extends State<TabsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            _screens[_selectedScreenIndex]['title'],
-          ),
+        centerTitle: true,
+        title: Text(
+          _screens[_selectedScreenIndex]['title'],
         ),
       ),
+      drawer: MainDrawer(),
       body: _screens[_selectedScreenIndex]['screen'],
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectScreen,

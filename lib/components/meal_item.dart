@@ -11,7 +11,14 @@ class MealItem extends StatelessWidget {
     Navigator.of(context).pushNamed(
       AppRoutes.MEAL_DETAILS,
       arguments: meal,
-    );
+    ).then((result) {
+      if(result == null){
+        print('Sem Resultado');
+      }else{
+        print(result);
+      }
+      
+    });
   }
 
   @override

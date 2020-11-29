@@ -19,6 +19,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   List<Meal> _availableMeals = DUMMY_MEALS;
+  List<Meal> _favoriteMeals = [];
+
   Settings settings = Settings();
 
   void _filterMeals (Settings settings){
@@ -33,6 +35,20 @@ class _MyAppState extends State<MyApp> {
         return !filterGluten && !filterLactose && !filterVegan && !filterVegetarian;
       }).toList();
     });
+  }
+
+  _toggleFavorite(Meal meal){
+    setState(() {
+      if(_favoriteMeals.contains(meal)){
+      _favoriteMeals.remove(meal);
+      }else{
+        _favoriteMeals.add(meal);
+      }  
+    });
+  }
+
+  bool _isFavoriteMeal(Meal meal){
+    return _favoriteMeals.contains(meal);
   }
 
   @override
@@ -53,9 +69,9 @@ class _MyAppState extends State<MyApp> {
       ),
       //initialRoute: ,
       routes: {
-        AppRoutes.HOME: (context) => TabsScreen(),
+        AppRoutes.HOME: (context) => TabsScreen(_favoriteMeals),
         AppRoutes.CATEGORIES_MEALS: (context) => CategoriesMealsScreen(_availableMeals),
-        AppRoutes.MEAL_DETAILS: (context) => MealDetailsScreen(),
+        AppRoutes.MEAL_DETAILS: (context) => MealDetailsScreen(_toggleFavorite,_isFavoriteMeal),
         AppRoutes.SETTINGS: (context) => SettingsScreen(settings,_filterMeals),
       },
       //entra nesse metódo somen se a rota não existe em ROUTES
@@ -72,7 +88,7 @@ class _MyAppState extends State<MyApp> {
       // },
       onUnknownRoute: (settings) {
        return MaterialPageRoute(builder: (_) {
-         return MealDetailsScreen();
+         return CategoriesScreens();
        });
       },
     );
